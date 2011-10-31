@@ -1,6 +1,5 @@
 var assert = require("assert");
-var MidJSON = require("./midjson.js");
-//var print   = process.stdout.write;
+var MidJSON = require("./midjson2.js");
 var println = console.log;
 var stdout = process.stdout;
 
@@ -8,9 +7,9 @@ var stdout = process.stdout;
 println("Writer Tests");
 
 (function test_keyword_writing() {
-  assert.strictEqual(MidJSON.toJSON(true),  '"true"');
-  assert.strictEqual(MidJSON.toJSON(false), '"false"');
-  assert.strictEqual(MidJSON.toJSON(null),  '"null"');
+  assert.strictEqual(MidJSON.toJSON(true),  "true");
+  assert.strictEqual(MidJSON.toJSON(false), "false");
+  assert.strictEqual(MidJSON.toJSON(null),  "null");
   stdout.write('.');
 })();
 
@@ -32,8 +31,8 @@ println("Writer Tests");
   assert.strictEqual(MidJSON.toJSON({a:1, b:2, c:3}), '{"a": 1, "b": 2, "c": 3}');
   assert.strictEqual(MidJSON.toJSON({a:1, b:[2,33,"a"], c:3}), 
                      '{"a": 1, "b": [2,33,"a"], "c": 3}');
-  assert.strictEqual(MidJSON.toJSON({a:{dog :    "whisperer", ary: [11]}, b:[2,33,"a"], c:3}), 
-                     '{"a": {"dog": "whisperer", "ary": [11]}, "b": [2,33,"a"], "c": 3}');
+  assert.strictEqual(MidJSON.toJSON({a:{dog :    "whisperer", ary: [11]}, b:[2,33,true], c:3}), 
+                     '{"a": {"dog": "whisperer", "ary": [11]}, "b": [2,33,true], "c": 3}');
   stdout.write('.');
 })();
 
@@ -49,13 +48,13 @@ println("\nParser Tests");
   stdout.write('.');
 })();
 
-(function test_number_parsing() {
-  assert.strictEqual(MidJSON.parse("42"),     42);
-  assert.strictEqual(MidJSON.parse("-13"),    -13);
-  assert.strictEqual(MidJSON.parse("3.1415"), 3.1415);
-  assert.strictEqual(MidJSON.parse("-0.01"),  -0.01);
-  stdout.write('.');
-})();
+// (function test_number_parsing() {
+//   assert.strictEqual(MidJSON.parse("42"),     42);
+//   assert.strictEqual(MidJSON.parse("-13"),    -13);
+//   assert.strictEqual(MidJSON.parse("3.1415"), 3.1415);
+//   assert.strictEqual(MidJSON.parse("-0.01"),  -0.01);
+//   stdout.write('.');
+// })();
 
 //     assert_equal(0.2e1,   @parser.parse("0.2e1"))
 //     assert_equal(0.2e+1,  @parser.parse("0.2e+1"))
